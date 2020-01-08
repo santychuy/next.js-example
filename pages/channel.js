@@ -1,9 +1,14 @@
 import fetch from 'isomorphic-fetch';
 
-const Channel = ({ channel }) => (
+const Channel = ({ channel, audio_clips }) => (
     <div>
         <header>Podcasts</header>
         <h1>{ channel.title }</h1>
+
+        <h2>Últimos Podcasts</h2>
+        {audio_clips.map((audio, i) => (
+            <div key={i}>{audio.title}</div>
+        ))}
 
         <style jsx>{`
             header {
@@ -51,12 +56,18 @@ const Channel = ({ channel }) => (
 
 Channel.getInitialProps = async ({ query }) => {
     const idChannel = query.id;
-    const res = await fetch(`https://api.audioboom.com/channels/${idChannel}`);
+
+    const [res, resAudios] = await Promise.all([ /* A sido lo más hermoso que he visto */
+        fetch(`https://api.audioboom.com/channels/${idChannel}`),
+        fetch(`https://api.audioboom.com/channels/${idChannel}/audio_clips`)
+    ])
+
+    //const res = await fetch(`https://api.audioboom.com/channels/${idChannel}`);
     const { body: { channel } } = await res.json(); 
     /* Si hay duda de la deconstruccion de arriba, usar el console.log para ver el json */
     /* console.log(res.json()) */
 
-    const resAudios = await fetch(`https://api.audioboom.com/channels/${idChannel}/audio_clips`);
+    //const resAudios = await fetch(`https://api.audioboom.com/channels/${idChannel}/audio_clips`);
     const { body: { audio_clips } } = await resAudios.json();
 
     return { channel, audio_clips };
