@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Head from 'next/head';
+import '../styles/styles.scss';
 
 export const Layout = ({ children, title }) => (
     <div>
@@ -8,7 +9,7 @@ export const Layout = ({ children, title }) => (
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head>
         <header>
-            <Link href="/"><a>Podcasts</a></Link>
+            <Link href="/"><a className="example">Podcasts</a></Link>
         </header>
 
         { children }
