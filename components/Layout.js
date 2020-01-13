@@ -10,7 +10,9 @@ export const Layout = ({ children, title }) => (
         </Head>
         
         <header className="header">
-            <Link href="/"><a className="headerTitle">Podcasts</a></Link>
+            <Link href="/">
+                <a className="headerTitle">Podcasts</a>
+            </Link>
         </header>
 
         { children }
