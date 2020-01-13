@@ -1,0 +1,15 @@
+$title-size: 35px;
+$main-color: #8756ca;
+
+.header {
+    color: white;
+    background-color: $main-color;
+    padding: 15px;
+    text-align: center;
+
+    .headerTitle {
+        font-size: $title-size;
+        text-decoration: none;
+        color: white;
+    }
+}
