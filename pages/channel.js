@@ -66,13 +66,11 @@ Channel.getInitialProps = async ({ query }) => {
             fetch(`https://api.audioboom.com/channels/${idChannel}`),
             fetch(`https://api.audioboom.com/channels/${idChannel}/audio_clips`)
         ])
-    
-        //const res = await fetch(`https://api.audioboom.com/channels/${idChannel}`);
-        const { body: { channel } } = await res.json(); 
+
+        const { body: { channel } } = await res.json();
         /* Si hay duda de la deconstruccion de arriba, usar el console.log para ver el json */
         /* console.log(res.json()) */
-    
-        //const resAudios = await fetch(`https://api.audioboom.com/channels/${idChannel}/audio_clips`);
+
         const { body: { audio_clips } } = await resAudios.json();
     
         return { channel, audio_clips, statusCode: 200 };
